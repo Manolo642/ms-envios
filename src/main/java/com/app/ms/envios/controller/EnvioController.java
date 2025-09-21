@@ -35,32 +35,22 @@ public class EnvioController {
     }
 
     @GetMapping("/envios")
-    public ResponseEntity<List<EnvioResponseDTO>> findAll(){
-        try {
-            List<EnvioResponseDTO> env = envioService.getAllEnvios();
-            if(env.isEmpty()){
-                return ResponseEntity.noContent().build();
-            }
-            return ResponseEntity.ok(env);
-        }catch (Exception e){
-            log.error("Error al obtener todos los envios {} ", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<List<EnvioResponseDTO>> findAll() {
+        List<EnvioResponseDTO> envios = envioService.getAllEnvios();
+        if (envios.isEmpty()) {
+            return ResponseEntity.noContent().build();
         }
+        return ResponseEntity.ok(envios);
     }
 
 
     @GetMapping("/enviosByOrdenId/{id_Orden}")
     public ResponseEntity<List<EnvioResponseDTO>> enviosByOrdenId(@PathVariable Long id_Orden){
-        try {
-            List<EnvioResponseDTO> env = envioService.getAllEnviosByIdOrden(id_Orden);
-            if(env.isEmpty()){
-                return ResponseEntity.noContent().build();
-            }
-            return ResponseEntity.ok(env);
-        }catch (Exception e){
-            log.error("Error al obtener todos los envios por idOrden {} ", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+         List<EnvioResponseDTO> env = envioService.getAllEnviosByIdOrden(id_Orden);
+         if(env.isEmpty()){
+              return ResponseEntity.noContent().build();
+         }
+         return ResponseEntity.ok(env);
     }
 
 
