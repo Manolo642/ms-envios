@@ -46,7 +46,7 @@ public class EnvioService {
         return envioResponseDTOList;
     }
 
-
+    /*
     public List<EnvioResponseDTO> getAllEnvios(){
         List<Envio> envioList = new ArrayList<>();
         List<EnvioResponseDTO> envioResponseDTOList = new ArrayList<>();
@@ -68,6 +68,11 @@ public class EnvioService {
 
         }
         return envioResponseDTOList;
+    }
+*/
+
+    public List<Envio> getAllEnvios(){
+        return  envioRepository.findAll();
     }
 
     public EnvioResponseDTO getEnvioById(Long idEnvio) throws BadRequestException {

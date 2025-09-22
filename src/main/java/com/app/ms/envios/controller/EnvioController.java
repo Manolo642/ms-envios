@@ -1,6 +1,7 @@
 package com.app.ms.envios.controller;
 
 import com.app.ms.envios.dto.EnvioResponseDTO;
+import com.app.ms.envios.entiti.Envio;
 import com.app.ms.envios.error.ErrorResponse;
 import com.app.ms.envios.service.EnvioService;
 import jakarta.persistence.EntityNotFoundException;
@@ -34,6 +35,7 @@ public class EnvioController {
         return ResponseEntity.ok(response);
     }
 
+    /*
     @GetMapping("/envios")
     public ResponseEntity<List<EnvioResponseDTO>> findAll() {
         List<EnvioResponseDTO> envios = envioService.getAllEnvios();
@@ -42,7 +44,17 @@ public class EnvioController {
         }
         return ResponseEntity.ok(envios);
     }
+*/
 
+
+    @GetMapping("/envios")
+    public ResponseEntity<List<Envio>> findAll() {
+        List<Envio> envios = envioService.getAllEnvios();
+        if (envios.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(envios);
+    }
 
     @GetMapping("/enviosByOrdenId/{id_Orden}")
     public ResponseEntity<List<EnvioResponseDTO>> enviosByOrdenId(@PathVariable Long id_Orden){
